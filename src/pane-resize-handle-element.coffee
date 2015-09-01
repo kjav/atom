@@ -49,7 +49,7 @@ class PaneResizeHandleElement extends HTMLElement
     return @resizeStopped() unless @previousSibling? and @nextSibling?
 
     if @isHorizontal
-      totalWidth = @previousSibling.clientWidth + @nextSibling.clientWidth
+      totalWidth = @previousSibling.clientWidth + @nextSibling.offsetWidth
       #get the left and right width after move the resize view
       leftWidth = clientX - @previousSibling.getBoundingClientRect().left
       leftWidth = @fixInRange(leftWidth, 0, totalWidth)
@@ -58,7 +58,7 @@ class PaneResizeHandleElement extends HTMLElement
       # to change pane width
       @setFlexGrow(leftWidth, rightWidth)
     else
-      totalHeight = @previousSibling.clientHeight + @nextSibling.clientHeight
+      totalHeight = @previousSibling.clientHeight + @nextSibling.offsetHeight
       topHeight = clientY - @previousSibling.getBoundingClientRect().top
       topHeight = @fixInRange(topHeight, 0, totalHeight)
       bottomHeight = totalHeight - topHeight
